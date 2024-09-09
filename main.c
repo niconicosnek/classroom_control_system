@@ -1,3 +1,19 @@
+/* Classroom Management System in C
+
+This practical project was developed for the Algorithms and Data Structures I course at the Federal 
+Center for Technological Education Celso Suckow da Fonseca. The project's goal was to create a system 
+to manage student information, including registration, grades, and attendance, using data structures 
+such as linked lists and hash tables.
+
+The system allows for student registration, attendance tracking, grading, and the generation of reports sorted 
+by different criteria. For sorting, Bubble Sort (O(n^2) complexity) and Merge Sort (O(n log n) complexity) 
+algorithms were implemented and tested.
+
+Authors: Enzo Basaldella
+         Gustavo Kanji
+         Nícolas Henriques
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 //#include <windows.h> //Windows library for sleep() function to work
@@ -20,8 +36,8 @@ int main() {
         printf("\nMenu:\n");
         printf("1. Register new student\n");
         printf("2. Register evaluation\n");
-        printf("3. Generate grade report\n");
-        printf("4. Record attendance\n");
+        printf("3. Record attendance\n");
+        printf("4. Generate grade report\n");
         printf("5. Generate student report\n");
         printf("6. Exit\n");
         printf("Choose an option: ");
@@ -35,10 +51,10 @@ int main() {
                 registerEvaluation(studentList);
                 break;
             case 3:
-                generateGradeReport(studentList);
+                recordAttendance(studentList);
                 break;
             case 4:
-                recordAttendance(studentList);
+                generateGradeReport(studentList);
                 break;
             case 5:
                 generateStudentReport(studentList);
