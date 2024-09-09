@@ -34,7 +34,7 @@ void registerStudent(HashTable *hashTable, Student **list) {
     hashTable->table[index] = newStudent;
 
     printf("Student registered successfully!\n");
-    sleep(3);
+    sleep(1);
 
 }
 
