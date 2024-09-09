@@ -17,10 +17,17 @@ void registerEvaluation(Student *list) {
     }
 
     float *grades = (float*)malloc(totalStudents * sizeof(float));
+    int evaluation;
     int i = 0;
     current = list;
+
+    printf("\e[1;1H\e[2J");
+    printf("Evaluation number: ");
+    scanf("%d", &evaluation);
+
     while (current != NULL) {
         printf("\e[1;1H\e[2J");
+        printf("------ P%d ------\n", evaluation);
         printf("Grade for student %s: ", current->name);
         scanf("%f", &grades[i]);
         i++;
@@ -30,18 +37,16 @@ void registerEvaluation(Student *list) {
     i = 0;
     current = list;
     while (current != NULL) {
-        int gradeCount = 0;
-        while (current->grades != NULL && current->grades[gradeCount] != -1) {
-            gradeCount++;
+        current->grades = (float*)realloc(current->grades, (evaluation + 2) * sizeof(float));
+        
+        for (int j = 0; j <= evaluation; j++) {
+            if (j != evaluation && current->grades[j] == -1) {
+                current->grades[j] = 0; //Assuming each non registered grade is 0.
+            }
         }
 
-        if (gradeCount == 0) {
-            current->grades = (float*)malloc(2 * sizeof(float));
-        } else {
-            current->grades = (float*)realloc(current->grades, (gradeCount + 2) * sizeof(float));
-        }
-        current->grades[gradeCount] = grades[i];
-        current->grades[gradeCount + 1] = -1;
+        current->grades[evaluation] = grades[i];
+        current->grades[evaluation + 1] = -1;
 
         i++;
         current = current->next;
@@ -59,37 +64,45 @@ void generateGradeReport(Student *list) {
     }
 
     if (totalStudents == 0) {
-        printf("No students registered.\n");
+        printf("\nNo student registered.\n\n");
+        sleep(3);
+        return;
+    }
+
+    if(list->grades == NULL ) {
+        printf("\nNo grade registered.\n\n");
+        sleep(3);
         return;
     }
 
     float maxGrade = -1, minGrade = 101, gradeSum = 0;
-    int totalGrades = 0;
+    int totalGrades = 0, evaluation = 0;
+
+    printf("\e[1;1H\e[2J");
+    printf("Evaluation number: ");
+    scanf("%d", &evaluation);
 
     current = list;
     while (current != NULL) {
-        if (current->grades != NULL) {
-            for (int i = 0; current->grades[i] != -1; i++) {
-                if (current->grades[i] > maxGrade) maxGrade = current->grades[i];
-                if (current->grades[i] < minGrade) minGrade = current->grades[i];
-                gradeSum += current->grades[i];
-                totalGrades++;
-            }
+        if (current->grades != NULL && current->grades[evaluation] != -1) {
+            if (current->grades[evaluation] > maxGrade) maxGrade = current->grades[evaluation];
+            if (current->grades[evaluation] < minGrade) minGrade = current->grades[evaluation];
+            gradeSum += current->grades[evaluation];
+            totalGrades++;
         }
         current = current->next;
     }
 
     float averageGrade = gradeSum / totalGrades;
+    printf("------ P%d ------\n", evaluation);
     printf("Max Grade: %.2f, Min Grade: %.2f, Average Grade: %.2f\n", maxGrade, minGrade, averageGrade);
 
     float *grades = (float*)malloc(totalGrades * sizeof(float));
     int i = 0;
     current = list;
     while (current != NULL) {
-        if (current->grades != NULL) {
-            for (int j = 0; current->grades[j] != -1; j++) {
-                grades[i++] = current->grades[j];
-            }
+        if (current->grades != NULL && current->grades[evaluation] != -1) {
+            grades[i++] = current->grades[evaluation];
         }
         current = current->next;
     }
