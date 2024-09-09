@@ -22,3 +22,6 @@ Para garantir que o sistema possa aumentar o número de alunos sem se preocupar 
 Considerando que as matrı́culas são números inteiros (aleatórios e não limitados) mas que temos no máximo 100 alunos na turma, crie uma tabela hash cujo ı́ndice seja uma função hash de sua escolha aplicada à matrı́cula e o valor armazenado seja o endereço do nó na lista encadeada. Sempre que um novo aluno for adicionado atualize essa tabela se atentando para a possibilidade de colisões.
 
 Sugestão: utilize esse acesso direto à lista encadeada para realizar a ordenação. Ainda, ele solicitou que você teste alguns algoritmos de ordenação, um de complexidade quadrática e outra de complexidade n log(n) e avalie como isso influencia na geração dos relatórios.
+
+Compilar: gcc *.c -o student_management
+Rodar: ./student_management
