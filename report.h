@@ -8,5 +8,8 @@ void printStudentReport(Student *list);
 void sortStudentsByRegistration(Student **list);
 void sortStudentsByTotalGrades(Student **list);
 void sortStudentsByAbsences(Student **list);
+Student* copyStudentList(Student *list);
+int compareAbsences(Student *a, Student *b);
+int compareTotalGrades(Student *a, Student *b);
 
 #endif
