@@ -1,4 +1,8 @@
 # classroom_control_system
+
+Compilar: gcc *.c -o student_management
+Rodar: ./student_management
+
 Sistema de controle de sala de aula
 
 Um professor solicitou que você melhore o sistema utilizado para controlar a sala de aula na instituição, lidando com cálculo de notas e frequência.
