@@ -1,6 +1,7 @@
 # classroom_control_system
 
 Compilar: gcc *.c -o student_management
+
 Rodar: ./student_management
 
 Sistema de controle de sala de aula
